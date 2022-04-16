@@ -1,0 +1,32 @@
+{% extends 'food/layout.html' %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'food/homepage-recipe.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <h2 class="text-center">My Recipes</h2>
+    <div class="container-sm" style="max-width: 800px; margin: auto;" >       
+        <a class="btn mb-3" href="{% url 'new_recipe' %}">New Recipe</a>
+
+        <ul class="list-group">
+            {% for recipe in recipes %}
+                <li class="list-group-item recipes_list d-flex flex-wrap justify-content-between" >
+                    <div class=" d-flex flex-wrap align-items-center ">
+                        <button style="width: 70px;" class="plan btn btn-sm" id="planBtn-{{ recipe.id }}" data-recipe="{{ recipe.id }}" data-planned="default" >Plan</button>
+                        <span id="badge-{{ recipe.id }}" class="badge bg-success ms-2" style="display: none;">Ingredients</span>
+                        <a class="ms-2" href="{% url 'recipe' recipe.title %}">{{ recipe.title }} </a>
+                        
+                    </div>
+                    <div>
+                        <button data-recipe="{{ recipe.id }}" class="btn btn-sm btn-delete-recipe">delete</button>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+ 
+        
+{% endblock %}

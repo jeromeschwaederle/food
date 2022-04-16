@@ -1,0 +1,41 @@
+{% extends 'food/ingredient_list.html' %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'food/myStock.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="max-width: 800px; margin: auto;">
+        <h2 class="text-center">My Stock</h2>
+        <p>
+            <button 
+            id="stock_btn"
+            class="btn " 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapseExample" 
+            aria-expanded="false" 
+            aria-controls="collapseExample"
+            >Show my stock</button>
+        </p>
+        <div class="collapse" id="collapseExample">
+           <ul id="stock_list" class="list-group">
+                {% for stock in stocks %}
+                    <li data-ingredient_id="{{ stock.ingredient.id }}" data-unit="{{ stock.ingredient.unit.unit }}" data-quantity="{{ stock.quantity }}" class="stock_list_item list-group-item" >
+                        <button data-ingredient_id="{{ stock.ingredient.id }}" data-unit="{{ stock.ingredient.unit.unit }}" data-quantity="{{ stock.quantity }}" class="remove_btn btn btn-secondary btn-sm me-2">remove</button>
+                        {% if stock.ingredient.unit.unit == "piece" %}
+                        {% if stock.quantity > 1 %}
+                            {{ stock.ingredient.name }}s: {{ stock.quantity }}
+                        {% else %}
+                        {{ stock.ingredient.name }}: {{ stock.quantity }} 
+                        {% endif %}
+                        {% else %}
+                            {{ stock.ingredient.name }}: {{ stock.quantity }} {{ stock.ingredient.unit.unit }} 
+                        {% endif %}
+                    </li>
+                {% endfor %}
+           </ul>
+        </div>
+    </div>
+{% endblock %}

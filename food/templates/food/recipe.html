@@ -1,0 +1,32 @@
+{% extends 'food/layout.html' %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'food/homepage-recipe.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="max-width: 800px; margin: auto;">
+        <h2>{{ recipe.title }}</h2>
+        <p class="fs-5">{{ recipe.recipe|linebreaksbr }}</p>
+        <ul class="fs-5">
+            {% for element in ingredients %}
+                <li>
+                    {% if element.ingredient.unit.unit == "piece" %}
+                        {% if element.quantity > 1 %}
+                            {{ element.ingredient.name }}s: {{ element.quantity }}
+                        {% else %}
+                        {{ element.ingredient.name }}: {{ element.quantity }} 
+                        {% endif %}
+                    {% else %}
+                        {{ element.ingredient.name }}: {{ element.quantity }} {{ element.ingredient.unit.unit }} 
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+           
+
+
+    </div>
+
+{% endblock %}

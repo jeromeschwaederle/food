@@ -1,0 +1,70 @@
+html {
+    margin: 20px;
+}
+
+body {
+    background-color: #ffffeff5	;
+    color: darkblue;
+}
+
+.nav-link {
+    color: darkblue;
+}
+
+.nav-link:hover {
+    color: #ff8700;
+}
+
+
+form {
+    margin: auto;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.alert {
+    width: 50%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #ff8700;
+}
+
+
+
+.btn {
+    background-color: darkblue;
+    color: #ffffcc;
+}
+
+.btn:hover {
+    background-color: #ff8700;
+    color: black
+}
+
+.btn:disabled {
+    background-color: rgb(218, 218, 218);
+    color: rgb(141, 141, 141);
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn-delete-recipe {
+    background-color: rgb(255, 255, 230);
+    color: black;
+}
+
+.btn-delete-recipe:hover {
+    background-color: black;
+    color: rgb(255, 255, 230);
+}

@@ -1,0 +1,25 @@
+{% extends 'food/layout.html' %}
+
+{% block body %}
+    <h2 class="text-center">Login</h2>
+
+    {% if message %}
+        <div class="alert alert-warning" style="margin: auto;" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+    <div class="container-form container d-flex mt-5" >
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <div>{{ field.label_tag }}</div>
+                    <div>{{ field }}</div>
+                </div>
+            {% endfor %}
+            <div>
+                <input type="submit"  value="Login" >
+            </div>
+        </form>
+    </div>
+{% endblock %}

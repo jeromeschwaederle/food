@@ -1,0 +1,59 @@
+{% extends 'food/layout.html' %}
+
+
+{% block body %}
+    {% block content %}
+    {% endblock %}
+    
+    <div class="container-sm" style="max-width: 800px;">
+
+        <input class="my-3" type="text" id="lookup" placeholder="Filter ingredient name" autofocus>
+
+        {% for ingredient in ingredients %}
+            <div class="card mb-2 p-2" id="{{ ingredient.name|lower|cut:' ' }}" >
+                <div class="row align-items-center g-0 mx-5">
+                    <div class="col-md-3">
+                        <img 
+                            src="{{ ingredient.image }}" 
+                            alt="image of {{ ingredient.name }}" 
+                            style="height: 80px;"
+                        >
+                    </div>
+                    <div class="col-md-3 ">
+                        <div class="card-body">
+                            <h5 class="card-title ingredient-name">{{ ingredient.name }}</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <div >
+                            <input 
+                                class="quantity_input"
+                                id="quantity-{{ ingredient.id }}" 
+                                type="text" 
+                                placeholder="{{ ingredient.unit }}" 
+                                style="text-align: end; width: 70%;" 
+                            >
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row justify-content-center " >
+                            <button 
+                                data-ingredient_id="{{ ingredient.id }}"
+                                data-ingredient_name="{{ ingredient.name }}"
+                                data-unit="{{ ingredient.unit }}"
+                                class="add-to btn btn-sm" 
+                                id="add-to-{{ ingredient.id }}" 
+                                style="width: auto;"
+                                disabled
+                                >Add to recipe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% block content_2 %}
+    {% endblock %}
+
+{% endblock %}

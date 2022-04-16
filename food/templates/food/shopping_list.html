@@ -1,0 +1,42 @@
+{% extends 'food/layout.html' %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'food/shoppingList.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="max-width: 500px; margin: auto;">
+        <h2 class="text-center">Shopping List</h2>
+        <h4>Selected Recipes:</h4>
+        <ul>
+            {% for recipe in recipes %}
+                <li>{{ recipe }}</li>
+            {% empty %}
+                <h6>No recipe selected...</h6>
+            {% endfor %}
+    
+        </ul>  
+        <div>
+            <h4>Shopping list:</h4>
+            <button class="btn btn-secondary btn-sm" id="addAll">Add all to stock</button>
+        </div>
+    
+        <ul class="list-group" id="shopping_list">
+            {% for element in shop_list %}
+                <li data-ingredient_id="{{ element.ingredient.id }}" data-unit="{{ element.ingredient.unit.unit }}" data-quantity="{{ element.quantity }}" data-item_id="{{ element.id }}" class="shop_list_item list-group-item">
+                    {% if element.ingredient.unit.unit == "piece" %}
+                        {% if element.quantity > 1 %}
+                            {{ element.ingredient.name }}s: {{ element.quantity }}
+                        {% else %}
+                            {{ element.ingredient.name }}: {{ element.quantity }} 
+                        {% endif %}
+                    {% else %}
+                        {{ element.ingredient.name }}: {{ element.quantity }} {{ element.ingredient.unit.unit }} 
+                    {% endif %}
+                </li>
+            {% endfor %}
+       </ul>
+    </div>
+
+{% endblock %}

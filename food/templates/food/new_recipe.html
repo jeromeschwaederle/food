@@ -1,0 +1,94 @@
+{% extends 'food/ingredient_list.html' %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'food/new_recipe.js' %}"></script>
+{% endblock %}
+
+    {% block content %}
+        <h2 class="text-center">New Recipe</h2>
+
+        
+        <div class="container my-3">
+            <div>
+                <div class="row align-items-end ">
+                    <div class="col text-center">Write Recipe</div>
+                    <div class="col text-center">Add Ingredients</div>
+                    <div class="col text-center">Check And Save</div>
+                </div>
+            </div>
+            <div class="progress" style="width: 70%; margin: auto;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%"></div>
+            </div>
+        </div>
+
+
+        <div id="first_step">
+            <div id="new_recipe_form" class="container-form container d-flex mt-5" style="width: 400px;">
+                <div class="form">
+                    <div id="alert_title_recipe" style="display: none; width: 100%;" class="alert alert-warning my-2 text-center" role="alert"></div>
+                    {% for field in form_recipe %}
+                        <div class="mb-3">
+                            <div>{{ field.label_tag }}</div>
+                            <div>{{ field }}</div>
+                        </div>
+                    {% endfor %}  
+                    <button class="btn  btn-sm" id="submit_new_recipe_form" >Add ingredients</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="second_step" style="display: none;">
+            <div class="container-sm" style="max-width: 800px;">
+                <div class=" d-flex justify-content-between" style="width: 50%; margin: auto;">
+                    <button class="btn btn-sm mb-3" id="back_to_title_and_recipe">Change Recipe</button>
+                    <button class="btn btn-sm mb-3" id="check_and_save" disabled>Check And Save</button>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <div class="card p-3">
+                            <h5 class="display-6 mb-2" id="recipe_title_second_step"></h5>
+                            <div class="lead" id="recipe_recipe_second_step"></div>
+                        </div> 
+                    </div>
+                    <div class="col">
+                        <ul id="ingredients_list" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+
+    {% endblock %}
+
+     
+
+    {% block content_2 %}
+        </div>
+
+    <div id="third_step" style="display: none;">
+        <div class="container-sm" style="max-width: 800px;">
+            <div class=" d-flex justify-content-between" style="width: 50%; margin: auto;">
+                <button id="change_ingredients" class="btn btn-secondary btn-sm mb-3">Change Ingredients</button>
+                <button id="save_recipe" class="btn btn-success btn-sm mb-3">Save Recipe</button>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card p-3">
+                        <h5 class="display-6 mb-2" id="recipe_title_third_step"></h5>
+                        <div class="lead" id="recipe_recipe_third_step"></div>
+                    </div>        
+                </div>
+                <div class="col">
+                    <ul id="ingredients_list_last_check" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+
+
+
+
+
